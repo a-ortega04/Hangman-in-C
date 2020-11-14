@@ -108,3 +108,4 @@ int main() {
 //agregar palabras al banco de palabras
 //formato y diseño
 //revisar y mejorar conforme revision
+//hacerlo not case sensitive
