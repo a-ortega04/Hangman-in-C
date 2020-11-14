@@ -101,3 +101,10 @@ int main() {
 
     return 0;
 }
+//instrucciones 
+//dibujo del colgado
+//indicador de palabras ya adivinadas
+//funcion de jugar otra vez
+//agregar palabras al banco de palabras
+//formato y diseño
+//revisar y mejorar conforme revision
