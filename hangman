@@ -37,7 +37,7 @@ int main() {
     char guess[16];
     char letraAdivinada;
 
-    printf("guessWords:%s randomIndex: %d lenghtOfWord: %d\n",
+    printf("guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
         palabras[randomIndex],
         randomIndex,
         lenghtOfWord);
