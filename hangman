@@ -9,12 +9,12 @@ void printBody(int numeroVidas, char* body) {
 	printf("\tNumero de Vidas :%d\n", numeroVidas);
 	switch(numeroVidas) {
 
-		case 6: body[6] = '\\'; break;
-		case 5: body[5] = '/'; break;
-		case 4: body[4] = '\\'; break;
+		case 0: body[6] = '\\'; break;
+		case 1: body[5] = '/'; break;
+		case 2: body[4] = '\\'; break;
 		case 3: body[3] = '|'; break;
-		case 2: body[2] = '/'; break;
-		case 1: body[1] = ')', body[0] = '('; break;
+		case 4: body[2] = '/'; break;
+		case 5: body[1] = ')', body[0] = '('; break;
 		default: break;
 
 	}
@@ -25,7 +25,7 @@ void printBody(int numeroVidas, char* body) {
 	       "\t|        %c%c%c\n"
 	       "\t|        %c %c\n"
 	       "\t|             \n"
-	       "\t|             ", body[0], body[1], body[2],
+	       "\t|           \n", body[0], body[1], body[2],
 	       body[3], body[4], body[5], body[6]);
 }
 
@@ -41,15 +41,25 @@ int main() {
         "indirecto",
         "manzana",
         "ventilador",
-        "cobija"
+        "cobija",
+        "pizza",
+        "contrato",
+        "television",
+        "basketball",
+        "baseball",
+        "trapezoide"
     };
 
-    int randomIndex = rand() % 8;
+    int randomIndex = rand() % 14;
 
     int numeroVidas = 6;
     int correcto = 0;
     int excorrecto = 0;
     char *body = malloc(CHANCE+1);
+    char adivinado[12];
+    int i = 0;
+    int counter = 0;
+
 
     int lenghtOfWord = strlen(palabras[randomIndex]);
 
@@ -79,13 +89,26 @@ int main() {
 	printBody(numeroVidas, body);
 
 
+
+    for( i = 0; i < lenghtOfWord ; i++){
+            adivinado[i] = '_';
+            adivinado[lenghtOfWord] = '\0';
+        }
+
+        for(i = 0 ; i < lenghtOfWord ; i++){
+            printf(" ");
+            printf("%c",adivinado[i]);
+
+
+        }
+
     while ( correcto < lenghtOfWord ) {
 
-        printf("correcto hasta ahora: %d\n",correcto);
-        printf("Introduce una letra:");
+        printf("\ncorrecto hasta ahora: %d\n",correcto);
+        printf("Introduce una letra:\n");
         fgets(guess, 16, stdin);
 
-        if( strncmp(guess, "quit", 4) == 0) {
+        if( strncmp(guess, "salir", 5) == 0) {
             quit = 1;
             break;
         }
@@ -108,11 +131,17 @@ int main() {
                     correcto++;
                     printBody(numeroVidas, body);
                 }
-
-
-
+        }
+        for( i = 0; i < lenghtOfWord ; i++){
+            adivinado[i] = '_';
+            adivinado[lenghtOfWord] = '\0';
         }
 
+        for(i = 0 ; i < lenghtOfWord ; i++){
+            printf(" ");
+            printf("%c",adivinado[i]);
+
+        }
         if( excorrecto == correcto) {
             numeroVidas--;
             printf("respusta incorrecta\n");
@@ -123,11 +152,7 @@ int main() {
         } else {
             printf("correcto\n");
         }
-
-
-
     }
-
     if ( quit == 1 ) {
 
         printf("te saliste qlo\n");
@@ -140,11 +165,13 @@ int main() {
 
     return 0;
 }
+//adivinado[12]= letraAdivinada;
+//printf("letras hasta el momento: %C\n", adivinado[12])
 
 
-//dibujo del colgado 1/2
-//indicador de palabras ya adivinadas
-//funcion de jugar otra vez
-//agregar palabras al banco de palabras
+
+//dibujo del colgado 7/8
+//indicador de letras ya adivinadas 1/2
+//funcion de jugar otra vez (cornito)
 //formato y diseño
 //revisar y mejorar conforme revision
