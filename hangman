@@ -2,6 +2,33 @@
 #include "stdlib.h"
 #include "string.h"
 
+#define CHANCE 6
+
+
+void printBody(int numeroVidas, char* body) {
+	printf("\tNumero de Vidas :%d\n", numeroVidas);
+	switch(numeroVidas) {
+
+		case 6: body[6] = '\\'; break;
+		case 5: body[5] = '/'; break;
+		case 4: body[4] = '\\'; break;
+		case 3: body[3] = '|'; break;
+		case 2: body[2] = '/'; break;
+		case 1: body[1] = ')', body[0] = '('; break;
+		default: break;
+
+	}
+
+	printf("\t _________\n"
+	       "\t|         |\n"
+	       "\t|        %c %c\n"
+	       "\t|        %c%c%c\n"
+	       "\t|        %c %c\n"
+	       "\t|             \n"
+	       "\t|             ", body[0], body[1], body[2],
+	       body[3], body[4], body[5], body[6]);
+}
+
 int main() {
 
     srand(time(NULL));
@@ -19,9 +46,10 @@ int main() {
 
     int randomIndex = rand() % 8;
 
-    int numeroVidas = 5;
+    int numeroVidas = 6;
     int correcto = 0;
     int excorrecto = 0;
+    char *body = malloc(CHANCE+1);
 
     int lenghtOfWord = strlen(palabras[randomIndex]);
 
@@ -37,16 +65,19 @@ int main() {
     char guess[16];
     char letraAdivinada;
 
-    printf("Ahorcado!!!!!!!!!!!\n");
-    printf("Reglas: \n");
-	printf("5 vidas maximo.\n");
-	printf("Utiliza minusculas solamente.\n");
-	printf("Ejempolo : a, b, e, etc... \n");
-
     printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
         palabras[randomIndex],
         randomIndex,
         lenghtOfWord);
+
+    printf("Ahorcado!!!!!!!!!!!\n");
+    printf("Reglas: \n");
+	printf("6 vidas maximo.\n");
+	printf("Utiliza minusculas solamente.\n");
+	printf("Ejempolo : a, b, e, etc... \n");
+
+	printBody(numeroVidas, body);
+
 
     while ( correcto < lenghtOfWord ) {
 
@@ -75,6 +106,7 @@ int main() {
                 if( letraAdivinada == palabras[randomIndex][loopIndex] ){
                     letterGuessed[loopIndex] = 1;
                     correcto++;
+                    printBody(numeroVidas, body);
                 }
 
 
@@ -84,6 +116,7 @@ int main() {
         if( excorrecto == correcto) {
             numeroVidas--;
             printf("respusta incorrecta\n");
+            printBody(numeroVidas, body);
             if (numeroVidas == 0) {
                 break;
             }
@@ -108,7 +141,8 @@ int main() {
     return 0;
 }
 
-//dibujo del colgado
+
+//dibujo del colgado 1/2
 //indicador de palabras ya adivinadas
 //funcion de jugar otra vez
 //agregar palabras al banco de palabras
