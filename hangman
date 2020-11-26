@@ -4,7 +4,6 @@
 
 #define CHANCE 6
 
-
 void printBody(int numeroVidas, char* body) {
 	printf("\tNumero de Vidas :%d\n", numeroVidas);
 	switch(numeroVidas) {
@@ -27,6 +26,14 @@ void printBody(int numeroVidas, char* body) {
 	       "\t|             \n"
 	       "\t|           \n", body[0], body[1], body[2],
 	       body[3], body[4], body[5], body[6]);
+}
+void reglas (){
+        printf("Ahorcado!!!!!!!!!!!\n");
+        printf("Reglas: \n");
+        printf("6 vidas maximo.\n");
+        printf("Utiliza minusculas solamefnte.\n");
+        printf("Ejemplo : a, b, e, etc... \n");
+    return 0;
 }
 
 int main() {
@@ -55,55 +62,42 @@ int main() {
     int numeroVidas = 6;
     int correcto = 0;
     int excorrecto = 0;
+    int loopIndex = 0;
+    int quit = 0;
     char *body = malloc(CHANCE+1);
     char adivinado[12];
     int i = 0;
-    int counter = 0;
-
+    char guess[16];
+    char letraAdivinada;
 
     int lenghtOfWord = strlen(palabras[randomIndex]);
 
-
-
     int letterGuessed[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
 
-    int quit = 0;
-
-
-    int loopIndex = 0;
-
-    char guess[16];
-    char letraAdivinada;
+    void guionBajo (){
+        for( i = 0; i < lenghtOfWord ; i++){
+            adivinado[i] = '_';
+            adivinado[lenghtOfWord] = '\0';
+        }
+        for(i = 0 ; i < lenghtOfWord ; i++){
+            printf(" ");
+            printf("%c",adivinado[i]);
+        }
+    return 0;
+    }
 
     printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
         palabras[randomIndex],
         randomIndex,
         lenghtOfWord);
 
-    printf("Ahorcado!!!!!!!!!!!\n");
-    printf("Reglas: \n");
-	printf("6 vidas maximo.\n");
-	printf("Utiliza minusculas solamente.\n");
-	printf("Ejempolo : a, b, e, etc... \n");
+    reglas ();
 
 	printBody(numeroVidas, body);
 
-
-
-    for( i = 0; i < lenghtOfWord ; i++){
-            adivinado[i] = '_';
-            adivinado[lenghtOfWord] = '\0';
-        }
-
-        for(i = 0 ; i < lenghtOfWord ; i++){
-            printf(" ");
-            printf("%c",adivinado[i]);
-
-
-        }
+    guionBajo ();
 
     while ( correcto < lenghtOfWord ) {
-
         printf("\ncorrecto hasta ahora: %d\n",correcto);
         printf("Introduce una letra:\n");
         fgets(guess, 16, stdin);
@@ -150,7 +144,8 @@ int main() {
                 break;
             }
         } else {
-            printf("correcto\n");
+            printf("\ncorrecto\n");
+
         }
     }
     if ( quit == 1 ) {
