@@ -37,7 +37,13 @@ int main() {
     char guess[16];
     char letraAdivinada;
 
-    printf("guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
+    printf("Ahorcado!!!!!!!!!!!\n");
+    printf("Reglas: \n");
+	printf("5 vidas maximo.\n");
+	printf("Utiliza minusculas solamente.\n");
+	printf("Ejempolo : a, b, e, etc... \n");
+
+    printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
         palabras[randomIndex],
         randomIndex,
         lenghtOfWord);
@@ -101,11 +107,10 @@ int main() {
 
     return 0;
 }
-//instrucciones 
+
 //dibujo del colgado
 //indicador de palabras ya adivinadas
 //funcion de jugar otra vez
 //agregar palabras al banco de palabras
 //formato y diseño
 //revisar y mejorar conforme revision
-//hacerlo not case sensitive
