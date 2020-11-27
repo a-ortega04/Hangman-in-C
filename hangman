@@ -119,22 +119,17 @@ int main() {
                     continue;
                 }
 
-
                 if( letraAdivinada == palabras[randomIndex][loopIndex] ){
                     letterGuessed[loopIndex] = 1;
                     correcto++;
                     printBody(numeroVidas, body);
                 }
         }
-        for( i = 0; i < lenghtOfWord ; i++){
-            adivinado[i] = '_';
-            adivinado[lenghtOfWord] = '\0';
-        }
-
+        guionBajo ();
         for(i = 0 ; i < lenghtOfWord ; i++){
-            printf(" ");
-            printf("%c",adivinado[i]);
-
+            if( i == loopIndex){
+                adivinado[i] = letraAdivinada;
+            }
         }
         if( excorrecto == correcto) {
             numeroVidas--;
@@ -145,19 +140,16 @@ int main() {
             }
         } else {
             printf("\ncorrecto\n");
-
         }
     }
     if ( quit == 1 ) {
 
-        printf("te saliste qlo\n");
+        printf("Decidiste salirte, adios!!\n");
     } else if (numeroVidas == 0){
         printf("\nPerdiste, la palabra era: <%s>\n",palabras[randomIndex]);
     } else {
         printf("Ganaste!!!!!\n");
-
     }
-
     return 0;
 }
 //adivinado[12]= letraAdivinada;
