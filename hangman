@@ -31,7 +31,7 @@ void reglas (){
         printf("Ahorcado!!!!!!!!!!!\n");
         printf("Reglas: \n");
         printf("6 vidas maximo.\n");
-        printf("Utiliza minusculas solamefnte.\n");
+        printf("Utiliza minusculas solamente.\n");
         printf("Ejemplo : a, b, e, etc... \n");
     return 0;
 }
@@ -58,7 +58,7 @@ int main() {
     };
 
     int randomIndex = rand() % 14;
-
+    int j;
     int numeroVidas = 6;
     int correcto = 0;
     int excorrecto = 0;
@@ -72,7 +72,8 @@ int main() {
 
     int lenghtOfWord = strlen(palabras[randomIndex]);
 
-    int letterGuessed[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+    int letterGuessed[12] = { 0,0,0,0,0,0,0,0,0
+    ,0,0,0 };
 
     void guionBajo (){
         for( i = 0; i < lenghtOfWord ; i++){
@@ -111,6 +112,7 @@ int main() {
 
         printf("letra Adivinada:%c\n",letraAdivinada);
 
+        
         excorrecto = correcto;
 
         for( loopIndex = 0; loopIndex < lenghtOfWord; loopIndex++) {
@@ -143,7 +145,6 @@ int main() {
         }
     }
     if ( quit == 1 ) {
-
         printf("Decidiste salirte, adios!!\n");
     } else if (numeroVidas == 0){
         printf("\nPerdiste, la palabra era: <%s>\n",palabras[randomIndex]);
@@ -152,6 +153,7 @@ int main() {
     }
     return 0;
 }
+
 //adivinado[12]= letraAdivinada;
 //printf("letras hasta el momento: %C\n", adivinado[12])
 
