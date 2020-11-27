@@ -8,7 +8,6 @@
 void printBody(int numeroVidas, char* body) {
 	printf("\tNumero de Vidas :%d\n", numeroVidas);
 	switch(numeroVidas) {
-
 		case 0: body[6] = '\\'; break;
 		case 1: body[5] = '/'; break;
 		case 2: body[4] = '\\'; break;
@@ -16,7 +15,6 @@ void printBody(int numeroVidas, char* body) {
 		case 4: body[2] = '/'; break;
 		case 5: body[1] = ')', body[0] = '('; break;
 		default: break;
-
 	}
 
 	printf("\t _________\n"
@@ -62,71 +60,59 @@ int main() {
     int randomIndex = rand() % 14;
     int numeroVidas = 6;
     int correcto = 0;
-    int excorrecto = 0;
+    int falla = 0;
     int numeroDeRepeticion = 0;
     int quit = 0;
     int i = 0;
     char letraAdivinada;
     char *body = malloc(CHANCE+1);
     char adivinado[12];
-    char guess[16];
+    char guess[12];
 
     int lenghtOfWord = strlen(palabras[randomIndex]);
 
     int letterGuessed[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
     //Herramienta de debug
-    printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //DEBUG, deshabilitar al final
-        palabras[randomIndex],
-        randomIndex,
-        lenghtOfWord);
+    //printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //DEBUG, deshabilitar al final
+        //palabras[randomIndex],
+        //randomIndex,
+        //lenghtOfWord);
     //Invocacion de funciones
     reglas ();
+    printf("\n");
 	printBody(numeroVidas, body);
     //Logica del juego
-        while ( correcto < lenghtOfWord ) {
-            printf("\n");
-            for(numeroDeRepeticion = 0; numeroDeRepeticion < lenghtOfWord; numeroDeRepeticion++) {
-                if(letterGuessed[numeroDeRepeticion] == 1){
-                    printf("%c",palabras[randomIndex][numeroDeRepeticion]);
-                }   else {
-                        printf(" _ ");
+    while(correcto < lenghtOfWord) {
+        printf("\n");
+        for(numeroDeRepeticion = 0; numeroDeRepeticion < lenghtOfWord; numeroDeRepeticion++) {
+            if(letterGuessed[numeroDeRepeticion] == 1){
+                printf("%c",palabras[randomIndex][numeroDeRepeticion]);
+            }   else {
+                    printf(" _ ");
                     }
-            }
+        }
         printf("\n");
         printf("\ncorrecto hasta ahora: %d\n",correcto);
         printf("Introduce una letra:\n");
-        fgets(guess, 16, stdin);
-
+        fgets(guess, 12, stdin);
         if( strncmp(guess, "salir", 5) == 0) {
             quit = 1;
             break;
         }
-
         letraAdivinada = guess[0];
-
         printf("letra Adivinada:%c\n",letraAdivinada);
-
-
-        excorrecto = correcto;
-
+        falla = correcto;
         for( numeroDeRepeticion = 0; numeroDeRepeticion < lenghtOfWord; numeroDeRepeticion++) {
-
                 if(letterGuessed[numeroDeRepeticion] == 1){
                     continue;
                 }
-
                 if( letraAdivinada == palabras[randomIndex][numeroDeRepeticion] ){
                     letterGuessed[numeroDeRepeticion] = 1;
                     correcto++;
                     printBody(numeroVidas, body);
                 }
         }
-        for(i = 0 ; i < lenghtOfWord ; i++){
-            if( i == numeroDeRepeticion){
-                adivinado[i] = letraAdivinada;
-            }
-        }
-        if( excorrecto == correcto) {
+        if( falla == correcto) {
             numeroVidas--;
             printf("respusta incorrecta\n");
             printBody(numeroVidas, body);
@@ -137,6 +123,7 @@ int main() {
             printf("\ncorrecto\n");
         }
     }
+    //opciones de terminacion(salir, perder y ganar)
     if ( quit == 1 ) {
         printf("Decidiste salirte, adios!!\n");
     } else if (numeroVidas == 0){
@@ -149,6 +136,6 @@ int main() {
 
 
 
+
 //dibujo del colgado 7/8
 //funcion de jugar otra vez (cornito)
-//revisar y mejorar conforme revision
