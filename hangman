@@ -58,7 +58,6 @@ int main() {
     };
 
     int randomIndex = rand() % 14;
-    int j;
     int numeroVidas = 6;
     int correcto = 0;
     int excorrecto = 0;
@@ -68,6 +67,7 @@ int main() {
     char adivinado[12];
     int i = 0;
     char guess[16];
+    char acumulador[12];
     char letraAdivinada;
 
     int lenghtOfWord = strlen(palabras[randomIndex]);
@@ -87,18 +87,28 @@ int main() {
     return 0;
     }
 
-    printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
-        palabras[randomIndex],
-        randomIndex,
-        lenghtOfWord);
+    //printf("------guessWords:%s randomIndex: %d lenghtOfWord: %d\n", //quitar esto al final
+        //palabras[randomIndex],
+        //randomIndex,
+        //lenghtOfWord);
 
     reglas ();
-
 	printBody(numeroVidas, body);
 
-    guionBajo ();
-
     while ( correcto < lenghtOfWord ) {
+        printf("\n");
+        for( loopIndex = 0; loopIndex < lenghtOfWord; loopIndex++) {
+
+                if(letterGuessed[loopIndex] == 1){
+                    printf("%c",palabras[randomIndex][loopIndex]);
+                } else {
+                    printf("-");
+                }
+
+        }
+
+        printf("\n");
+
         printf("\ncorrecto hasta ahora: %d\n",correcto);
         printf("Introduce una letra:\n");
         fgets(guess, 16, stdin);
@@ -112,7 +122,7 @@ int main() {
 
         printf("letra Adivinada:%c\n",letraAdivinada);
 
-        
+
         excorrecto = correcto;
 
         for( loopIndex = 0; loopIndex < lenghtOfWord; loopIndex++) {
@@ -127,7 +137,6 @@ int main() {
                     printBody(numeroVidas, body);
                 }
         }
-        guionBajo ();
         for(i = 0 ; i < lenghtOfWord ; i++){
             if( i == loopIndex){
                 adivinado[i] = letraAdivinada;
@@ -154,13 +163,7 @@ int main() {
     return 0;
 }
 
-//adivinado[12]= letraAdivinada;
-//printf("letras hasta el momento: %C\n", adivinado[12])
-
-
 
 //dibujo del colgado 7/8
-//indicador de letras ya adivinadas 1/2
 //funcion de jugar otra vez (cornito)
-//formato y diseño
 //revisar y mejorar conforme revision
